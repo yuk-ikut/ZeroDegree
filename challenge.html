@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <title>Zero Degree</title>
+    <link rel="stylesheet" type="text/css" href="css-design.css">
+    <!-- Tambahkan Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+    <header>
+        <nav>
+            <div class="logo-container">
+                <img src="ZEROO.png" alt="Zero Degree Logo" class="logo-img">
+                <span class="logo-text">Zero Degree</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="homepage.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="masalah.html"><i class="fas fa-tree"></i> Akar Masalah</a></li>
+                <li><a href="dampak.html"><i class="fas fa-water"></i> Dampak</a></li>
+                <li><a href="challenge.html"><i class="fas fa-tasks"></i> Eco-Challenge</a></li>
+            </ul>
+        </nav>
+    </header>
+  <!-- About -->
+  <section id="about">
+    <h2>Krisis Iklim Itu Nyata 🌍</h2>
+    <p>
+      Tingkat polusi tinggi memicu efek rumah kaca, es kutub mencair, habitat satwa menghilang, 
+      hingga cuaca ekstrem semakin sering terjadi.
+    </p>
+    <h3>Yuk Mulai dari Hal Kecil 💡</h3>
+    <p>
+      Setelah melihat dampaknya, apa kamu siap jadi bagian dari perubahan?  
+      Mulai aksi nyata bersama <b>Zero Degree</b>!
+    </p>
+  </section>
+
+  <!-- Take Action -->
+  <section id="takeaction">
+    <h2>Take Action 🚀</h2>
+    <div class="actions">
+      <label><input type="checkbox" value="Kurangi plastik sekali pakai"> Kurangi plastik sekali pakai</label><br>
+      <label><input type="checkbox" value="Hemat listrik"> Hemat listrik</label><br>
+      <label><input type="checkbox" value="Gunakan transportasi umum"> Gunakan transportasi umum</label><br>
+      <label><input type="checkbox" value="Tanam pohon"> Tanam pohon</label><br>
+      <input type="text" id="customAction" placeholder="Tambahkan aksi kamu sendiri...">
+      <br>
+      <button onclick="selesaiAksi()">Selesai</button>
+    </div>
+    <p id="output"></p>
+    <p id="counter"></p>
+  </section>
+  <script>
+    let totalPengunjung = localStorage.getItem("pengunjung") || 0;
+    let totalAksi = localStorage.getItem("aksi") || 0;
+
+    // setiap buka web, tambah pengunjung
+    totalPengunjung++;
+    localStorage.setItem("pengunjung", totalPengunjung);
+
+    function selesaiAksi() {
+      let ceklis = document.querySelectorAll(".actions input[type=checkbox]:checked");
+      let custom = document.getElementById("customAction").value;
+      let nama = prompt("Masukkan nama kamu:");
+
+      let aksiDilakukan = [];
+      ceklis.forEach(c => aksiDilakukan.push(c.value));
+      if(custom) aksiDilakukan.push(custom);
+
+      if(aksiDilakukan.length > 0){
+        totalAksi = parseInt(totalAksi) + aksiDilakukan.length;
+        localStorage.setItem("aksi", totalAksi);
+        document.getElementById("output").innerText = 
+          nama + ", kamu sudah melakukan aksi: " + aksiDilakukan.join(", ") + ". Keren banget! 💚";
+      } else {
+        document.getElementById("output").innerText = "Pilih atau isi aksi dulu ya!";
+      }
+
+      updateCounter();
+    }
+
+    function updateCounter() {
+      document.getElementById("counter").innerText =
+        "Sudah ada " + totalPengunjung + " pengunjung dan " + totalAksi + " aksi yang dilakukan!";
+    }
+
+    updateCounter();
+  </script>
+</body>
+</html>
