@@ -21,7 +21,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: var(--text-dark);
-    background-color: #f9f9f9;
+    background-color: #F6F6F6;
 }
 
 /* Header & Navigasi */
@@ -360,4 +360,5 @@ section h2 i {
         .source a:hover {
             text-decoration: underline;
         }
+
 
